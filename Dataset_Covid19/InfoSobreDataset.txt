@@ -1,0 +1,5 @@
+Nesse conjunto de dados criei uma marca de corte para não sobrecarregar demais as consultas.
+Conjunto de dados reais extraídos do começo da pandemia até 29/06/2021, terei dados de todo o ano de 2020 mais a metade de 2021.
+
+Esses dados estão disponíveis publicamente, segue link abaixo:
+https://ourworldindata.org/covid-deaths
