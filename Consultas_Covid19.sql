@@ -13,14 +13,14 @@ SET SQL_SAFE_UPDATES = 1;
 
 ## ANÁLISE EXPLORATÓRIA ##
 
-# 1- Qual a média de mortos dos 5 primeiros países que apresentaram mais mortes por Covid-19 ? v
+# 1- Qual a média de mortos dos 5 primeiros países que apresentaram mais mortes por Covid-19 ?
 SELECT location,
        ROUND(AVG(total_deaths), 2) AS MediaMortos
 FROM cap07.covid_mortes 
 GROUP BY location
 ORDER BY MediaMortos DESC;
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# 2- Qual data teve a maior proporção de mortes em relação ao total de casos no Brasil? v
+# 2- Qual data teve a maior proporção de mortes em relação ao total de casos no Brasil ?
 SELECT date,
        location, 
        total_cases,
@@ -30,14 +30,14 @@ FROM cap07.covid_mortes
 WHERE location = "Brazil" 
 ORDER BY 5 DESC;
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# 3- Qual a proporção média entre o total de casos e a população das 5 primeiras localidades? v
+# 3- Qual a proporção média entre o total de casos e a população das 5 primeiras localidades ?
 SELECT location,
        ROUND(AVG((total_cases / population) * 100), 2) AS PercentualPopulacao
 FROM cap07.covid_mortes  
 GROUP BY location
 ORDER BY PercentualPopulacao DESC;
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# 4- Considerando o maior valor do total de casos, quais os 3 países com a maior taxa de infecção em relação à população? v
+# 4- Considerando o maior valor do total de casos, quais os 3 países com a maior taxa de infecção em relação à população ?
 # Usei NOT NULL porque em alguns casos, o continente não esta preenchido.
 SELECT location, 
        MAX(CAST(total_cases AS UNSIGNED)) AS MaiorContagemInfec,
@@ -47,7 +47,7 @@ WHERE continent IS NOT NULL
 GROUP BY location
 ORDER BY PercentualPopulacao DESC;
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# 5- Quais os continentes com o maior número de mortes? v
+# 5- Quais os continentes com o maior número de mortes ?
 SELECT continent, 
        MAX(CAST(total_deaths AS UNSIGNED)) as MaiorContagemMortes
 FROM cap07.covid_mortes 
@@ -80,7 +80,7 @@ AND mortos.date = vacinados.date
 WHERE mortos.continent = 'South America'
 ORDER BY 2,3;
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# 7- Qual o número de novos vacinados e o total de novos vacinados ao longo do tempo por continente? Considerando apenas os dados da América do Sul.
+# 7- Qual o número de novos vacinados e o total de novos vacinados ao longo do tempo por continente ? Considerando apenas os dados da América do Sul.
 
 OBS.:
 # Analisando o resultado da Query, vemos que o total de vacinados vai se movendo ao longo do tempo e a medida em que novos dados de novos vacinados vão aparecendo, ele vai aumentando.
@@ -96,7 +96,7 @@ AND mortos.date = vacinados.date
 WHERE mortos.continent = 'South America'
 ORDER BY 1,2;
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# 8- Qual o número de novos vacinados e o total de novos vacinados ao longo do tempo por continente? Considerando apenas os dados da América do Sul.
+# 8- Qual o número de novos vacinados e o total de novos vacinados ao longo do tempo por continente ? Considerando apenas os dados da América do Sul.
 
 OBS.:
 # Nível de granularidade maior filtrando por mês.
@@ -112,7 +112,7 @@ AND mortos.date = vacinados.date
 WHERE mortos.continent = 'South America'
 ORDER BY 1,2;
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# 9- Qual o percentual da população com pelo menos 1 dose da vacina ao longo do tempo? Considerando apenas os dados do Brasil. 
+# 9- Qual o percentual da população com pelo menos 1 dose da vacina ao longo do tempo ? Considerando apenas os dados do Brasil. 
 
 OBS.:
 # Analisando o resultado da Query vemos que o percentual da primeira dose era 0 no começo e a medida em que avança a vacinação o percentual vai aumentando ao longo do tempo porque as pessoas 
@@ -134,7 +134,7 @@ WHERE mortos.location = 'Brazil'
 )
 SELECT *, ROUND(((TotalMovelVacinacao / population) * 100), 2) AS Percentual_1_Dose FROM PopvsVac;
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# 10- Durante o mês de Maio/2021 o percentual de vacinados com pelo menos uma dose aumentou ou diminuiu no Brasil?
+# 10- Durante o mês de Maio/2021 o percentual de vacinados com pelo menos uma dose aumentou ou diminuiu no Brasil ?
 
 OBS.:
 # Analisando o resultado da Query, vemos que o percentual da primeira dose no começo de Maio era 18,51% e no final foi de 26,12%.
